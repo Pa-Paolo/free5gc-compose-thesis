@@ -220,6 +220,50 @@ services:
       - free5gc-smf
       - free5gc-upf
 
+  free5gc-nwdaf:
+    container_name: nwdaf
+    build:
+      context: ./nwdaf
+    command: sh -c "./n3iwf-ipsec.sh && ./n3iwf -c ./config/n3iwfcfg.yaml"
+    environment:
+      GIN_MODE: release
+    cap_add:
+      - NET_ADMIN
+    networks:
+      privnet:
+        aliases:
+          - nwdaf.free5gc.org
+    depends_on:
+      - free5gc-amf
+      - free5gc-smf
+      - free5gc-upf
+
+  prometheus:
+    container_name: prometheus
+    build:
+      context: ./prometheus
+    networks:
+      privnet:
+        aliases:
+          - prom.free5gc.org
+    ports:
+      - "9090:9090"
+    depends_on:
+      - free5gc-nwdaf     
+      
+  grafana:
+    container_name: grafana
+    build:
+      context: ./grafana
+    networks:
+      privnet:
+        aliases:
+          - graf.free5gc.org
+    ports:
+      - "3000:3000"
+    depends_on:
+      - free5gc-nwdaf   
+    
   free5gc-webui:
     container_name: webui
     build:
@@ -259,6 +303,22 @@ services:
     depends_on:
       - free5gc-amf
       - free5gc-upf
+      
+  device_simulation:
+    container_name: device_simulation
+    build:
+      context: ./device_simulation
+    command: python3 devices_simulation.py -d
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - "/dev/net/tun"
+    networks:
+      privnet:
+        aliases:
+          - devsim.free5gc.org
+    depends_on:
+      - ueransim
 
 networks:
   privnet:
