@@ -221,10 +221,10 @@ services:
       - free5gc-upf
 
   free5gc-nwdaf:
-    container_name: nwdaf
+    container_name: nf_nwdaf
     build:
-      context: ./nwdaf
-    command: sh -c "./n3iwf-ipsec.sh && ./n3iwf -c ./config/n3iwfcfg.yaml"
+      context: ./nf_nwdaf
+    command: ./build/nwdaf
     environment:
       GIN_MODE: release
     cap_add:
@@ -237,6 +237,7 @@ services:
       - free5gc-amf
       - free5gc-smf
       - free5gc-upf
+      - free5gc-nrf
 
   prometheus:
     container_name: prometheus
