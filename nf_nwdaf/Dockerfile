@@ -9,7 +9,7 @@ RUN apt update \
     && apt update \
     && apt install git \
     && git clone https://gitlab.com/Paolort/nwdaf \
-    && cd nf_nwdaf/ \
+    && cd nwdaf/ \
     && go mod download github.com/antonfisher/nested-logrus-formatter \
     && go mod tidy \
     && go build -o ./build/nwdaf ./cmd/

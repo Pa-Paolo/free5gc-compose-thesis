@@ -221,10 +221,10 @@ services:
       - free5gc-upf
 
   free5gc-nwdaf:
-    container_name: nf_nwdaf
+    container_name: nwdaf
     build:
       context: ./nf_nwdaf
-    command: ./build/nwdaf
+    command: ./build/nwdaf -c ./config/nwdaf-deploy.yaml
     environment:
       GIN_MODE: release
     cap_add:

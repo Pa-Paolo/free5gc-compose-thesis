@@ -1,4 +1,4 @@
- my global config
+#my global config
 global:
   scrape_interval: 15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
   evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
@@ -28,11 +28,11 @@ scrape_configs:
     static_configs:
       - targets: ["localhost:9090"] 
 
-  - job_name: "nf_nwdaf"
+  - job_name: "nwdaf"
 
     # metrics_path defaults to '/metrics'
     # scheme defaults to 'http'.
 
     static_configs:
-      - targets: ["nf_nwdaf.free5gc.org:9090"]
-      
+      - targets: ["nwdaf.free5gc.org:8000"]
+
