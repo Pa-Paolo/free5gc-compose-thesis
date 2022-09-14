@@ -243,7 +243,7 @@ services:
     container_name: prometheus
     build:
       context: ./prometheus
-    dovolumes:
+    volumes:
         - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
     networks:
       privnet:
