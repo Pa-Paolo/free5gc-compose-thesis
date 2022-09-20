@@ -263,7 +263,7 @@ services:
         aliases:
           - graf.free5gc.org
     ports:
-      - "3000:3000"
+      - "3000:2999"
     depends_on:
       - free5gc-nwdaf   
     
