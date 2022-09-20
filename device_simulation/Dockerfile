@@ -21,7 +21,7 @@ RUN apt update \
     && dpkg-reconfigure --frontend noninteractive tzdata \
     && apt -y install python3.9 python3-pip \
     && cd Thesis_code/device_simulation \
-    && pip install pandas \
+    && pip install -r requirements.txt \
     && python3 config_duplicator.py -d \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && python3 config_duplicator.py -d

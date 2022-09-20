@@ -250,7 +250,7 @@ services:
         aliases:
           - prom.free5gc.org
     ports:
-      - "9090:9090"
+      - "9090:9089"
     depends_on:
       - free5gc-nwdaf     
       
@@ -322,6 +322,25 @@ services:
           - devsim.free5gc.org
     depends_on:
       - ueransim
+      - prometheus
+
+  forecasting:
+    container_name: forecast
+    build:
+      context: ./forecasting
+    command: python3 SARIMA_prometheus_forecaster.py -addr prom.free5gc.org:9090
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - "/dev/net/tun"
+    networks:
+      privnet:
+        aliases:
+          - forecast.free5gc.org
+    depends_on:
+      - ueransim
+      - device_simulation
+      - prometheus
 
 networks:
   privnet:
