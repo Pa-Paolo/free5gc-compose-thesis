@@ -250,7 +250,7 @@ services:
         aliases:
           - prom.free5gc.org
     ports:
-      - "9090:9089"
+      - "9089:9090"
     depends_on:
       - free5gc-nwdaf     
       
@@ -263,7 +263,7 @@ services:
         aliases:
           - graf.free5gc.org
     ports:
-      - "3000:2999"
+      - "2999:3000"
     depends_on:
       - free5gc-nwdaf   
     
@@ -322,7 +322,6 @@ services:
           - devsim.free5gc.org
     depends_on:
       - ueransim
-      - prometheus
 
   forecasting:
     container_name: forecast
