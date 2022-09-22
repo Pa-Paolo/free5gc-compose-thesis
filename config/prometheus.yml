@@ -36,3 +36,6 @@ scrape_configs:
     static_configs:
       - targets: ["nwdaf.free5gc.org:8000"]
 
+  - job_name: "cadvisor"
+    static_configs:
+      - targets: ["cadvisor.free5gc.org:8080"]
