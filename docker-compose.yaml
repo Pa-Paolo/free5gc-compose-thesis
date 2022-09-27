@@ -303,6 +303,8 @@ services:
       privnet:
         aliases:
           - gnb.free5gc.org
+    ports:
+      - "4997:4997"
     depends_on:
       - free5gc-amf
       - free5gc-upf
