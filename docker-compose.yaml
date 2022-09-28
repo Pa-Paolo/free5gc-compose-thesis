@@ -324,6 +324,7 @@ services:
           - devsim.free5gc.org
     depends_on:
       - ueransim
+      - prometheus
 
   forecasting:
     container_name: forecast

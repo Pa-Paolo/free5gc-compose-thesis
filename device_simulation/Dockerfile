@@ -23,8 +23,7 @@ RUN apt update \
     && cd Thesis_code/device_simulation \
     && pip install -r requirements.txt \
     && python3 config_duplicator.py -d \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
-    && python3 config_duplicator.py -d
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Set working dir
 WORKDIR /Thesis_code/device_simulation
